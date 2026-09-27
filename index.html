@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nidh0gg // Paweł Frelek</title>
+<meta name="description" content="Paweł Frelek (nidh0gg) — Arch Linux tinkerer, kernel bug hunter, open source contributor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050806; --panel:#0a120c; --line:#163d22;
+  --fg:#8cffb0; --dim:#4f9a68; --bright:#d4ffe0;
+  --amber:#ffb000; --red:#ff5a4a;
+  --glow:0 0 6px rgba(80,255,140,.45);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{
+  font:15px/1.6 "IBM Plex Mono",ui-monospace,Menlo,monospace;
+  text-shadow:var(--glow);
+  min-height:100vh;
+}
+/* scanlines + vignette */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:10;
+  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.28) 0 1px,transparent 1px 3px);
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:11;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.65) 100%);
+}
+a{color:var(--bright);text-decoration:none;border-bottom:1px dashed var(--dim)}
+a:hover,a:focus-visible{color:var(--bg);background:var(--fg);text-shadow:none;border-bottom-color:transparent;outline:none}
+.wrap{max-width:860px;margin:0 auto;padding:28px 16px 64px}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+  border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:28px}
+.sys{font-family:"VT323",monospace;font-size:22px;line-height:1.15;letter-spacing:.06em;color:var(--dim)}
+.sys b{color:var(--fg);font-weight:400}
+.langs{display:flex;gap:6px;flex-shrink:0}
+.langs button{
+  font:inherit;font-family:"VT323",monospace;font-size:20px;letter-spacing:.08em;
+  background:transparent;color:var(--dim);border:1px solid var(--line);
+  padding:0 10px;cursor:pointer;text-shadow:inherit
+}
+.langs button[aria-pressed="true"]{color:var(--bg);background:var(--fg);border-color:var(--fg);text-shadow:none}
+.langs button:focus-visible{outline:1px solid var(--amber);outline-offset:2px}
+
+h1{font-family:"VT323",monospace;font-weight:400;font-size:clamp(44px,9vw,76px);
+  line-height:.95;margin:0 0 6px;color:var(--bright);letter-spacing:.02em}
+.sub{color:var(--dim);margin:0 0 30px}
+.sub .amber{color:var(--amber);text-shadow:0 0 6px rgba(255,176,0,.45)}
+
+/* query blocks */
+section{margin:0 0 34px}
+.q{font-family:"VT323",monospace;font-size:24px;color:var(--amber);
+  text-shadow:0 0 6px rgba(255,176,0,.4);margin:0 0 10px;letter-spacing:.05em}
+.q::before{content:"> "}
+.panel{background:var(--panel);border:1px solid var(--line);padding:16px 18px}
+.panel p{margin:0 0 10px}.panel p:last-child{margin:0}
+
+dl.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 18px;margin:0}
+dl.kv dt{color:var(--dim)}
+dl.kv dd{margin:0;color:var(--bright)}
+
+ul.log{list-style:none;margin:0;padding:0}
+ul.log li{display:grid;grid-template-columns:78px 1fr;gap:14px;padding:10px 0;border-top:1px dashed var(--line)}
+ul.log li:first-child{border-top:0;padding-top:0}
+ul.log li:last-child{padding-bottom:0}
+.date{color:var(--dim)}
+.tag{display:inline-block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid currentColor;padding:0 6px;margin-right:6px;color:var(--dim);text-shadow:none}
+.tag.ok{color:var(--fg)}.tag.wip{color:var(--amber)}
+.what{color:var(--bright)}
+.det{color:var(--dim);font-size:14px;display:block;margin-top:2px}
+
+.status{display:flex;align-items:center;gap:10px;color:var(--dim);
+  border-top:1px solid var(--line);padding-top:14px;margin-top:40px;font-size:14px}
+.cur{display:inline-block;width:10px;height:18px;background:var(--fg);box-shadow:var(--glow);
+  animation:blink 1.1s steps(1) infinite;vertical-align:-3px}
+@keyframes blink{50%{opacity:0}}
+
+/* boot reveal */
+.boot > *{opacity:0;animation:on .35s ease-out forwards}
+.boot > *:nth-child(1){animation-delay:.05s}.boot > *:nth-child(2){animation-delay:.2s}
+.boot > *:nth-child(3){animation-delay:.35s}.boot > *:nth-child(4){animation-delay:.5s}
+.boot > *:nth-child(5){animation-delay:.65s}.boot > *:nth-child(6){animation-delay:.8s}
+.boot > *:nth-child(7){animation-delay:.95s}.boot > *:nth-child(8){animation-delay:1.1s}
+@keyframes on{0%{opacity:0;filter:brightness(2.2)}60%{opacity:1}100%{opacity:1;filter:none}}
+
+/* language switching: EN visible by default (works without JS) */
+[data-lang="en"] [lang="pl"]:not(html){display:none}
+[data-lang="pl"] [lang="en"]:not(html){display:none}
+
+@media (max-width:560px){
+  body{font-size:14px}
+  ul.log li{grid-template-columns:1fr;gap:2px}
+  dl.kv{grid-template-columns:1fr;gap:0}
+  dl.kv dd{margin-bottom:8px}
+  .sys{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){
+  .boot > *{animation:none;opacity:1}
+  .cur{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap boot">
+
+  <header class="top">
+    <div class="sys">
+      <b>YGGDRASIL</b> // PERSONNEL FILE<br>
+      NODE: NIDH0GG &nbsp; ACCESS: PUBLIC
+    </div>
+    <nav class="langs" aria-label="Language">
+      <button type="button" data-set="en" aria-pressed="true">EN</button>
+      <button type="button" data-set="pl" aria-pressed="false">PL</button>
+    </nav>
+  </header>
+
+  <div>
+    <h1>PAWEŁ FRELEK</h1>
+    <p class="sub">
+      <span class="amber">nidh0gg</span> ·
+      <span lang="en">Arch Linux tinkerer, kernel bug hunter, occasional translator. Poland.</span>
+      <span lang="pl">Majsterkowicz od Arch Linuksa, łowca błędów w kernelu, czasem tłumacz. Polska.</span>
+    </p>
+  </div>
+
+  <section aria-labelledby="q-id">
+    <h2 class="q" id="q-id"><span lang="en">QUERY: IDENTITY</span><span lang="pl">ZAPYTANIE: TOŻSAMOŚĆ</span></h2>
+    <div class="panel">
+      <p lang="en">By day I work in cosmetics production: batches, phases, homogenizers, scale-up. After hours I break and fix Linux. Lately that means chasing kernel panics with a Thunderbolt 4 dock, reporting them upstream, testing the fixes and writing down what I learned so the next person saves a few days.</p>
+      <p lang="pl">Na co dzień pracuję w produkcji kosmetyków: szarże, fazy, homogenizatory, skalowanie. Po godzinach psuję i naprawiam Linuksa. Ostatnio oznacza to polowanie na kernel panic z dockiem Thunderbolt 4, zgłaszanie błędów deweloperom, testowanie poprawek i spisywanie wniosków, żeby następna osoba zaoszczędziła kilka dni.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="q-log">
+    <h2 class="q" id="q-log"><span lang="en">QUERY: OPEN SOURCE LOG</span><span lang="pl">ZAPYTANIE: DZIENNIK OPEN SOURCE</span></h2>
+    <div class="panel">
+      <ul class="log">
+        <li>
+          <span class="date">2026-09</span>
+          <span>
+            <span class="tag ok">kernel</span>
+            <a class="what" href="https://gitlab.freedesktop.org/drm/amd/-/issues/5875">drm/amd #5875</a>
+            <span class="det" lang="en">NULL pointer dereference in amdgpu on a DisplayPort/MST link through a TB4 dock. Traced to <code>stream-&gt;sink-&gt;link</code>; tested the upstream fix 8fa813b7fd1e for the 7.2 stable backport.</span>
+            <span class="det" lang="pl">Dereferencja wskaźnika NULL w amdgpu na łączu DisplayPort/MST przez dock TB4. Przyczyna w <code>stream-&gt;sink-&gt;link</code>; przetestowałem poprawkę 8fa813b7fd1e do przeniesienia na 7.2 stable.</span>
+          </span>
+        </li>
+        <li>
+          <span class="date">2026-09</span>
+          <span>
+            <span class="tag ok">kernel</span>
+            <a class="what" href="https://patch.msgid.link/20260829-b4-tbt-fixes-v3-0-e1fab6ac54fe@kernel.org">thunderbolt: tb_dp_dprx_work</a>
+            <span class="det" lang="en">Reported a panic on dock disconnect to linux-usb; tested the fix series, now queued for 7.3.</span>
+            <span class="det" lang="pl">Zgłosiłem panic przy odłączaniu docka na linux-usb; przetestowałem serię poprawek, która trafi do 7.3.</span>
+          </span>
+        </li>
+        <li>
+          <span class="date">2026-09</span>
+          <span>
+            <span class="tag ok">wiki</span>
+            <a class="what" href="https://wiki.archlinux.org/title/Lenovo_ThinkPad_X13_Gen_3">ArchWiki: ThinkPad X13 Gen 3</a> ·
+            <a class="what" href="https://wiki.archlinux.org/title/Docks">Docks</a>
+            <span class="det" lang="en">AMD hardware table, known issues with the ThinkPad Thunderbolt 4 Dock (40B0), dock entry in the docks list.</span>
+            <span class="det" lang="pl">Tabela sprzętu dla wersji AMD, znane problemy z ThinkPad Thunderbolt 4 Dock (40B0), wpis na liście docków.</span>
+          </span>
+        </li>
+        <li>
+          <span class="date">2026-09</span>
+          <span>
+            <span class="tag ok">i18n</span>
+            <a class="what" href="https://github.com/Morganamilo/paru/pulls?q=is%3Apr+author%3Apablofrelo"><span lang="en">paru: Polish translation</span><span lang="pl">paru: polskie tłumaczenie</span></a>
+            <span class="det" lang="en">Finished the Polish translation of the AUR helper, left unfinished since 2021.</span>
+            <span class="det" lang="pl">Dokończyłem polskie tłumaczenie tego pomocnika AUR, porzucone w 2021 roku.</span>
+          </span>
+        </li>
+        <li>
+          <span class="date">2026-09</span>
+          <span>
+            <span class="tag wip">i18n</span>
+            <a class="what" href="https://github.com/evilsocket/opensnitch/discussions/484"><span lang="en">OpenSnitch: Polish translation</span><span lang="pl">OpenSnitch: polskie tłumaczenie</span></a>
+            <span class="det" lang="en">In progress.</span>
+            <span class="det" lang="pl">W toku.</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="q-sys">
+    <h2 class="q" id="q-sys"><span lang="en">QUERY: SYSTEMS</span><span lang="pl">ZAPYTANIE: SYSTEMY</span></h2>
+    <div class="panel">
+      <dl class="kv">
+        <dt>host</dt><dd>yggdrasil</dd>
+        <dt>hardware</dt><dd>ThinkPad X13 Gen 3 AMD · ThinkPad TB4 Dock · 2× AOC Q27G42XNE</dd>
+        <dt>os</dt><dd><span lang="en">Arch Linux, hardened: LUKS, Secure Boot with UKI, AppArmor, lockdown</span><span lang="pl">Arch Linux, utwardzony: LUKS, Secure Boot z UKI, AppArmor, lockdown</span></dd>
+        <dt>desktop</dt><dd>niri · waybar · gruvbox</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="q-proj">
+    <h2 class="q" id="q-proj"><span lang="en">QUERY: PROJECTS</span><span lang="pl">ZAPYTANIE: PROJEKTY</span></h2>
+    <div class="panel">
+      <ul class="log">
+        <li>
+          <span class="date">WIP</span>
+          <span>
+            <span class="tag wip">c</span>
+            <span class="what">nebulights</span>
+            <span class="det" lang="en">A Wayland screensaver with glowing ribbons and nebulae, inspired by the 3dfx screensavers of the early 2000s.</span>
+            <span class="det" lang="pl">Wygaszacz ekranu dla Waylanda ze świecącymi wstęgami i mgławicami, inspirowany wygaszaczami 3dfx z początku lat 2000.</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="q-contact">
+    <h2 class="q" id="q-contact"><span lang="en">QUERY: CONTACT</span><span lang="pl">ZAPYTANIE: KONTAKT</span></h2>
+    <div class="panel">
+      <dl class="kv">
+        <dt>github</dt><dd><a href="https://github.com/pablofrelo">github.com/pablofrelo</a></dd>
+      </dl>
+    </div>
+  </section>
+
+  <footer class="status">
+    <span class="cur" aria-hidden="true"></span>
+    <span lang="en">INTERFACE READY FOR INQUIRY</span>
+    <span lang="pl">INTERFEJS GOTOWY NA ZAPYTANIE</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll('[data-set]');
+  function set(l){
+    root.setAttribute('data-lang',l); root.lang=l;
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.set===l))});
+    try{localStorage.setItem('lang',l)}catch(e){}
+  }
+  var saved=null; try{saved=localStorage.getItem('lang')}catch(e){}
+  var q=new URLSearchParams(location.search).get('lang');
+  set(q==='pl'||q==='en'?q:saved||((navigator.language||'').slice(0,2)==='pl'?'pl':'en'));
+  btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
+})();
+</script>
+</body>
+</html>
