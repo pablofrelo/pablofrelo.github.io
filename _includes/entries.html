@@ -1,0 +1,11 @@
+{% for e in include.items %}
+        <li>
+          <span class="date">{{ e.date }}</span>
+          <span>
+            <span class="tag {{ e.status }}">{{ e.tag }}</span>
+            {% for l in e.links %}<a class="what" href="{{ l.url }}">{% if l.pl %}<span lang="en">{{ l.en }}</span><span lang="pl">{{ l.pl }}</span>{% else %}{{ l.en }}{% endif %}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}
+            <span class="det" lang="en">{{ e.en }}</span>
+            <span class="det" lang="pl">{{ e.pl }}</span>
+          </span>
+        </li>
+{% endfor %}

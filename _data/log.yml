@@ -1,0 +1,86 @@
+# Dziennik open source. Nowy wpis = nowy blok na końcu.
+# status: ok (zrobione) albo wip (w toku)
+# links: jeden lub więcej; pl jest opcjonalne (tytuł po polsku)
+# en / pl: opis; wolno używać HTML (<code>, &gt; itd.)
+
+- date: 2026-09
+  tag: kernel
+  status: ok
+  links:
+    - en: "drm/amd #5875"
+      url: https://gitlab.freedesktop.org/drm/amd/-/issues/5875
+  en: >-
+    NULL pointer dereference in amdgpu on a DisplayPort/MST link through a TB4 dock.
+    Traced to <code>stream-&gt;sink-&gt;link</code>; tested the upstream fix 8fa813b7fd1e
+    for the 7.2 stable backport.
+  pl: >-
+    Dereferencja wskaźnika NULL w amdgpu na łączu DisplayPort/MST przez dock TB4.
+    Przyczyna w <code>stream-&gt;sink-&gt;link</code>; przetestowałem poprawkę 8fa813b7fd1e
+    do przeniesienia na 7.2 stable.
+
+- date: 2026-09
+  tag: kernel
+  status: ok
+  links:
+    - en: "thunderbolt: tb_dp_dprx_work"
+      url: https://patch.msgid.link/20260829-b4-tbt-fixes-v3-0-e1fab6ac54fe@kernel.org
+  en: >-
+    Reported a panic on dock disconnect to linux-usb; tested the fix series, now queued for 7.3.
+  pl: >-
+    Zgłosiłem panic przy odłączaniu docka na linux-usb; przetestowałem serię poprawek,
+    która trafi do 7.3.
+
+- date: 2026-09
+  tag: wiki
+  status: ok
+  links:
+    - en: "ArchWiki: ThinkPad X13 Gen 3"
+      url: https://wiki.archlinux.org/title/Lenovo_ThinkPad_X13_Gen_3
+    - en: Docks
+      url: https://wiki.archlinux.org/title/Docks
+  en: >-
+    AMD hardware table, known issues with the ThinkPad Thunderbolt 4 Dock (40B0),
+    dock entry in the docks list.
+  pl: >-
+    Tabela sprzętu dla wersji AMD, znane problemy z ThinkPad Thunderbolt 4 Dock (40B0),
+    wpis na liście docków.
+
+- date: 2026-09
+  tag: i18n
+  status: ok
+  links:
+    - en: "paru: Polish translation"
+      pl: "paru: polskie tłumaczenie"
+      url: https://github.com/Morganamilo/paru/pulls?q=is%3Apr+author%3Apablofrelo
+  en: >-
+    Finished the Polish translation of the AUR helper, left unfinished since 2021.
+  pl: >-
+    Dokończyłem polskie tłumaczenie tego pomocnika AUR, porzucone w 2021 roku.
+
+- date: 2026-09
+  tag: i18n
+  status: wip
+  links:
+    - en: "OpenSnitch: Polish translation"
+      pl: "OpenSnitch: polskie tłumaczenie"
+      url: https://github.com/evilsocket/opensnitch/issues?q=author%3Apablofrelo
+  en: >-
+    Full Polish translation of the application firewall GUI (719 strings), submitted as
+    a pull request. Also reported an issue I found while translating.
+  pl: >-
+    Pełne polskie tłumaczenie interfejsu tej zapory aplikacyjnej (719 tekstów), wysłane
+    jako pull request. Przy okazji zgłosiłem problem znaleziony podczas tłumaczenia.
+
+- date: 2026-09
+  tag: i18n
+  status: ok
+  links:
+    - en: "fwupd: Polish translation"
+      pl: "fwupd: polskie tłumaczenie"
+      url: https://hosted.weblate.org/projects/fwupd/fwupd/pl/
+  en: >-
+    Translated the remaining 173 strings, including the new terminal interface,
+    bringing Polish to 100% on Weblate.
+  pl: >-
+    Przetłumaczyłem brakujące 173 teksty, w tym nowy interfejs terminalowy;
+    polska wersja ma teraz 100% na Weblate.

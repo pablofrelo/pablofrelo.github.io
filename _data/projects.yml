@@ -1,0 +1,15 @@
+# Projekty. Te same pola co w log.yml.
+
+- date: WIP
+  tag: c
+  status: wip
+  links:
+    - en: nebulights
+      url: https://github.com/pablofrelo/nebulights
+  en: >-
+    A Wayland screensaver with glowing ribbons and nebulae, inspired by the 3dfx-era
+    Voodoo Lights. Code written by Claude under my direction, tested on my hardware.
+  pl: >-
+    Wygaszacz ekranu dla Waylanda ze świecącymi wstęgami i mgławicami, inspirowany
+    Voodoo Lights z czasów 3dfx. Kod napisał Claude pod moim kierunkiem, testowany
+    na moim sprzęcie.
