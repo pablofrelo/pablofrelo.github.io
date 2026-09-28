@@ -84,3 +84,17 @@
   pl: >-
     Przetłumaczyłem brakujące 173 teksty, w tym nowy interfejs terminalowy;
     polska wersja ma teraz 100% na Weblate.
+
+- date: 2026-09
+  tag: i18n
+  status: ok
+  links:
+    - en: "passim: Polish translation"
+      pl: "passim: polskie tłumaczenie"
+      url: https://hosted.weblate.org/projects/passim/passim/pl/
+  en: >-
+    Started the Polish translation of the fwupd team's local cache daemon and
+    brought it to 100% on Weblate.
+  pl: >-
+    Rozpocząłem polskie tłumaczenie lokalnego cache'u aktualizacji od ekipy fwupd
+    i doprowadziłem je do 100% na Weblate.
