@@ -125,6 +125,10 @@ ul.log li:last-child{padding-bottom:0}
   .sys,.langs button{font-family:"Spleen16",monospace;font-size:16px}
   h1{font-family:"Spleen24",monospace;font-size:48px}
 }
+/* zakłócenie CRT (jak w narcissusie): co 45-90 s pasy szarpią w bok, przejeżdża jasny pas */
+.crt-band{position:absolute;margin:0;background:var(--bg);z-index:5;pointer-events:none}
+.crt-bar{position:fixed;left:0;right:0;top:0;height:96px;z-index:9;pointer-events:none;opacity:0;
+  background:linear-gradient(to bottom,transparent,rgba(140,255,176,.12),transparent)}
 @media (prefers-reduced-motion:reduce){
   .boot > *{animation:none;opacity:1}
   .cur{animation:none}
@@ -227,6 +231,43 @@ ul.log li:last-child{padding-bottom:0}
   var q=new URLSearchParams(location.search).get('lang');
   set(q==='pl'||q==='en'?q:saved||((navigator.language||'').slice(0,2)==='pl'?'pl':'en'));
   btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
+})();
+</script>
+<script>
+(function(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var wrap=document.querySelector('.wrap'), D=450, BANDS=5, JUMPS=9, MAX=14;
+  var bar=document.createElement('div'); bar.className='crt-bar'; document.body.appendChild(bar);
+  function schedule(){setTimeout(glitch,45000+Math.random()*45000)}
+  function glitch(){
+    // kopie strony, każda przycięta do jednego poziomego pasa i przesunięta w bok
+    var bands=[];
+    for(var i=0;i<BANDS;i++){
+      var c=wrap.cloneNode(true);
+      c.classList.remove('boot'); c.classList.add('crt-band');
+      c.setAttribute('aria-hidden','true'); c.inert=true;
+      document.body.appendChild(c); bands.push(c);
+    }
+    var t0=performance.now(), step=-1;
+    requestAnimationFrame(function f(now){
+      var p=(now-t0)/D;
+      if(p>=1){bands.forEach(function(c){c.remove()}); bar.style.opacity=0; return schedule()}
+      var s=Math.sin(p*Math.PI), k=Math.floor(p*JUMPS);
+      if(k!==step){ // pasy skaczą kilka razy na przebieg, zamiast płynąć
+        step=k;
+        var r=wrap.getBoundingClientRect();
+        bands.forEach(function(c){
+          var h=innerHeight*Math.random()*.06+2, y=Math.random()*(innerHeight-h), top=y-r.top;
+          c.style.top=(r.top+scrollY)+'px'; c.style.left=(r.left+scrollX)+'px'; c.style.width=r.width+'px';
+          c.style.clipPath='inset('+top+'px 0 '+(r.height-top-h)+'px 0)';
+          c.style.transform='translateX('+((Math.random()*2-1)*MAX*s)+'px)';
+        });
+      }
+      bar.style.transform='translateY('+((innerHeight+96)*p-96)+'px)'; bar.style.opacity=s;
+      requestAnimationFrame(f);
+    });
+  }
+  schedule();
 })();
 </script>
 </body>
