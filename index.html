@@ -41,7 +41,9 @@ body::after{
 }
 a{color:var(--bright);text-decoration:none;border-bottom:1px dashed var(--dim)}
 a:hover,a:focus-visible{color:var(--bg);background:var(--fg);text-shadow:none;border-bottom-color:transparent;outline:none}
-.wrap{max-width:860px;margin:0 auto;padding:28px 16px 64px}
+.wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:28px 16px 64px}
+/* tło: rzadkie gwiazdy, kilka migocze, co jakiś czas kometa */
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
 /* header */
 .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
@@ -136,6 +138,7 @@ ul.log li:last-child{padding-bottom:0}
 </style>
 </head>
 <body>
+<canvas id="sky" aria-hidden="true"></canvas>
 <div class="wrap boot">
 
   <header class="top">
@@ -268,6 +271,50 @@ ul.log li:last-child{padding-bottom:0}
     });
   }
   schedule();
+})();
+</script>
+<script>
+(function(){
+  var cv=document.getElementById('sky'), x=cv.getContext('2d'), W, H, stars=[], comet=null, last=0;
+  var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function init(){
+    var d=Math.min(devicePixelRatio||1,2);
+    W=innerWidth; H=innerHeight; cv.width=W*d; cv.height=H*d; x.setTransform(d,0,0,d,0,0);
+    stars=[];
+    for(var i=0,n=Math.round(W*H/14000);i<n;i++) stars.push({
+      x:Math.round(Math.random()*W), y:Math.round(Math.random()*H),
+      s:Math.random()<.85?1:2, a:.15+Math.random()*.45,
+      tw:Math.random()<.15?Math.random()*6.28:-1, sp:.6+Math.random()*1.6
+    });
+    draw(last);
+  }
+  function spawn(){ // z górnej krawędzi, po skosie w dół
+    var ang=(Math.random()<.5?1:-1)*(.35+Math.random()*.4)+Math.PI/2, v=W*.5+Math.random()*W*.3;
+    comet={x:Math.random()*W, y:-20, vx:Math.cos(ang)*v, vy:Math.sin(ang)*v, t:0, life:1.4+Math.random()*.8};
+  }
+  function draw(t){
+    x.clearRect(0,0,W,H);
+    stars.forEach(function(s){
+      var a=s.tw<0?s.a:s.a*(.25+.75*(.5+.5*Math.sin(t/1000*s.sp+s.tw)));
+      x.fillStyle='rgba(140,255,176,'+a.toFixed(3)+')'; x.fillRect(s.x,s.y,s.s,s.s);
+    });
+    if(comet){
+      var c=comet, f=Math.sin(Math.PI*Math.min(c.t/c.life,1)), L=.12,
+          tx=c.x-c.vx*L, ty=c.y-c.vy*L, g=x.createLinearGradient(c.x,c.y,tx,ty);
+      g.addColorStop(0,'rgba(212,255,224,'+(.9*f)+')'); g.addColorStop(1,'rgba(140,255,176,0)');
+      x.strokeStyle=g; x.lineWidth=1.5; x.beginPath(); x.moveTo(c.x,c.y); x.lineTo(tx,ty); x.stroke();
+    }
+  }
+  function frame(t){
+    var dt=Math.min((t-last)/1000,.1); last=t;
+    if(comet){comet.x+=comet.vx*dt; comet.y+=comet.vy*dt; comet.t+=dt; if(comet.t>comet.life)comet=null}
+    draw(t); requestAnimationFrame(frame);
+  }
+  var rt; addEventListener('resize',function(){clearTimeout(rt); rt=setTimeout(init,150)});
+  init();
+  if(still)return;
+  (function next(){setTimeout(function(){spawn(); next()},20000+Math.random()*40000)})();
+  requestAnimationFrame(function(t){last=t; frame(t)});
 })();
 </script>
 </body>
