@@ -239,7 +239,7 @@ ul.log li:last-child{padding-bottom:0}
 <script>
 (function(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  var wrap=document.querySelector('.wrap'), D=450, BANDS=5, JUMPS=9, MAX=14;
+  var wrap=document.querySelector('.wrap'), D=2000, BANDS=5, JUMPS=40, MAX=14;
   var bar=document.createElement('div'); bar.className='crt-bar'; document.body.appendChild(bar);
   function schedule(){setTimeout(glitch,45000+Math.random()*45000)}
   function glitch(){
