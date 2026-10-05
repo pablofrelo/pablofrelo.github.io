@@ -38,6 +38,9 @@
       url: https://wiki.archlinux.org/title/Lenovo_ThinkPad_X13_Gen_3
     - en: Docks
       url: https://wiki.archlinux.org/title/Docks
+    - en: my edits
+      pl: moje edycje
+      url: https://wiki.archlinux.org/title/Special:Contributions/Pablofrelo
   en: >-
     AMD hardware table, known issues with the ThinkPad Thunderbolt 4 Dock (40B0),
     dock entry in the docks list.
