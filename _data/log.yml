@@ -12,11 +12,11 @@
   en: >-
     NULL pointer dereference in amdgpu on a DisplayPort/MST link through a TB4 dock.
     Traced to <code>stream-&gt;sink-&gt;link</code>; tested the upstream fix 8fa813b7fd1e
-    for the 7.2 stable backport.
+    for the 7.2 stable backport. Confirmed fixed in 7.2.9; issue closed.    
   pl: >-
     Dereferencja wskaźnika NULL w amdgpu na łączu DisplayPort/MST przez dock TB4.
     Przyczyna w <code>stream-&gt;sink-&gt;link</code>; przetestowałem poprawkę 8fa813b7fd1e
-    do przeniesienia na 7.2 stable.
+    do przeniesienia na 7.2 stable. Potwierdzone w 7.2.9, zgłoszenie zamknięte.
 
 - date: 2026-09
   tag: kernel
@@ -101,3 +101,15 @@
   pl: >-
     Rozpocząłem polskie tłumaczenie lokalnego cache'u aktualizacji od ekipy fwupd
     i doprowadziłem je do 100% na Weblate.
+- date: 2026-10
+  tag: kernel
+  status: wip
+  links:
+    - en: "thunderbolt: hang in nhi_pci_remove"
+      url: https://lore.kernel.org/linux-usb/
+  en: >-
+    Reported a power-off hang in <code>nhi_pci_remove</code> after the dock disconnects
+    during shutdown, with a trace captured via pstore.
+  pl: >-
+    Zgłosiłem zawieszenie wyłączania w <code>nhi_pci_remove</code>, gdy dock odłącza się
+    w trakcie zamykania systemu; ślad złapany przez pstore.
