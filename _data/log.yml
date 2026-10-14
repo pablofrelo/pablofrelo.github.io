@@ -113,3 +113,15 @@
   pl: >-
     Zgłosiłem zawieszenie wyłączania w <code>nhi_pci_remove</code>, gdy dock odłącza się
     w trakcie zamykania systemu; ślad złapany przez pstore.
+- date: 2026-10
+  tag: kernel
+  status: wip
+  links:
+    - en: "drm/amd #5981"
+      url: https://gitlab.freedesktop.org/drm/amd/-/work_items/5981
+  en: >-
+    Reported a use-after-free in <code>dc_stream_release</code> after DPIA/MST teardown
+    at boot with a TB4 dock, caught by linux-hardened; trace captured via pstore.
+  pl: >-
+    Zgłosiłem use-after-free w <code>dc_stream_release</code> po rozbiciu połączenia
+    DPIA/MST przy starcie z dockiem TB4, wyłapany przez linux-hardened; ślad z pstore.
