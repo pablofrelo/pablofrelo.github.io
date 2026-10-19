@@ -103,16 +103,18 @@
     i doprowadziłem je do 100% na Weblate.
 - date: 2026-10
   tag: kernel
-  status: wip
+  status: ok
   links:
     - en: "thunderbolt: hang in nhi_pci_remove"
       url: https://lore.kernel.org/linux-usb/
   en: >-
     Reported a power-off hang in <code>nhi_pci_remove</code> after the dock disconnects
-    during shutdown, with a trace captured via pstore.
+    during shutdown, found a reliable way to reproduce it and sent logs with thunderbolt debug.
+    Fixed in 7.3 ("thunderbolt: Fix domain reference leak when DPRX read is canceled"); confirmed 3/3.
   pl: >-
     Zgłosiłem zawieszenie wyłączania w <code>nhi_pci_remove</code>, gdy dock odłącza się
-    w trakcie zamykania systemu; ślad złapany przez pstore.
+    w trakcie zamykania systemu, znalazłem sposób na jego odtworzenie i wysłałem logi z debugiem thunderbolta.
+    Naprawione w 7.3 („thunderbolt: Fix domain reference leak when DPRX read is canceled”); potwierdzone 3/3.
 - date: 2026-10
   tag: kernel
   status: wip
@@ -122,6 +124,8 @@
   en: >-
     Reported a use-after-free in <code>dc_stream_release</code> after DPIA/MST teardown
     at boot with a TB4 dock, caught by linux-hardened; trace captured via pstore.
+    Tested the proposed patch series; patches are in review at AMD.
   pl: >-
     Zgłosiłem use-after-free w <code>dc_stream_release</code> po rozbiciu połączenia
     DPIA/MST przy starcie z dockiem TB4, wyłapany przez linux-hardened; ślad z pstore.
+    Przetestowałem zaproponowaną serię poprawek; są w recenzji w AMD.
