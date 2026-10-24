@@ -4,6 +4,23 @@
   tag: c
   status: wip
   links:
+    - en: norns
+      url: https://github.com/pablofrelo/norns
+  en: >-
+    A BSP window manager for the river Wayland compositor, with its own bar (urd):
+    tags per monitor, mouse drag to swap and resize tiles, sliding animations, and two
+    switchable looks — gruvbox and MU/TH/UR with a live starfield. Code written by
+    Claude under my direction, used daily on my machine.
+  pl: >-
+    Window manager BSP dla kompozytora river, z własnym paskiem (urd): tagi na każdym
+    monitorze, przeciąganie i zmiana rozmiaru kafli myszą, animacje przesuwania i dwa
+    przełączane wyglądy — gruvbox oraz MU/TH/UR z żywym niebem. Kod napisał Claude pod
+    moim kierunkiem, używany na co dzień na moim komputerze.
+
+- date: WIP
+  tag: c
+  status: wip
+  links:
     - en: nebulights
       url: https://github.com/pablofrelo/nebulights
   en: >-
