@@ -9,13 +9,18 @@
   en: >-
     A BSP window manager for the river Wayland compositor, with its own bar (urd):
     tags per monitor, mouse drag to swap and resize tiles, sliding animations, and two
-    switchable looks — gruvbox and MU/TH/UR with a live starfield. Code written by
-    Claude under my direction, used daily on my machine.
+    switchable looks — gruvbox and MU/TH/UR with a live starfield. Built in: a system
+    tray with application menus, notifications that type themselves out, a slide-up
+    terminal, a Nostromo mode with CRT glitches and radio chatter, and norns-ctl for
+    scripting. Code written by Claude under my direction, used daily on my machine.
   pl: >-
     Window manager BSP dla kompozytora river, z własnym paskiem (urd): tagi na każdym
     monitorze, przeciąganie i zmiana rozmiaru kafli myszą, animacje przesuwania i dwa
-    przełączane wyglądy — gruvbox oraz MU/TH/UR z żywym niebem. Kod napisał Claude pod
-    moim kierunkiem, używany na co dzień na moim komputerze.
+    przełączane wyglądy — gruvbox oraz MU/TH/UR z żywym niebem. W środku: zasobnik
+    z menu aplikacji, powiadomienia wypisywane jak na terminalu, terminal wysuwany od
+    dołu, tryb Nostromo z zakłóceniami kineskopu i głosem z radiostacji oraz norns-ctl
+    do skryptów. Kod napisał Claude pod moim kierunkiem, używany na co dzień na moim
+    komputerze.
 
 - date: WIP
   tag: c
