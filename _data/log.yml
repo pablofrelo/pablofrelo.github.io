@@ -54,11 +54,13 @@
   links:
     - en: "paru: Polish translation"
       pl: "paru: polskie tłumaczenie"
-      url: https://github.com/Morganamilo/paru/pulls?q=is%3Apr+author%3Apablofrelo
+      url: https://github.com/Morganamilo/paru/pull/1589
   en: >-
     Finished the Polish translation of the AUR helper, left unfinished since 2021.
+    Merged; ships in paru 2.2.0.
   pl: >-
     Dokończyłem polskie tłumaczenie tego pomocnika AUR, porzucone w 2021 roku.
+    Zmergowane; jest w paru 2.2.0.
 
 - date: 2026-09
   tag: i18n
@@ -83,10 +85,10 @@
       url: https://hosted.weblate.org/projects/fwupd/fwupd/pl/
   en: >-
     Translated the remaining 173 strings, including the new terminal interface,
-    bringing Polish to 100% on Weblate.
+    bringing Polish to 100% on Weblate. Ships in fwupd 2.1.9.
   pl: >-
     Przetłumaczyłem brakujące 173 teksty, w tym nowy interfejs terminalowy;
-    polska wersja ma teraz 100% na Weblate.
+    polska wersja ma teraz 100% na Weblate. Jest w fwupd 2.1.9.
 
 - date: 2026-09
   tag: i18n
