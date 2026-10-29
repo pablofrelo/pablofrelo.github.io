@@ -7,21 +7,25 @@
     - en: norns
       url: https://github.com/pablofrelo/norns
   en: >-
-    A BSP window manager for the river Wayland compositor, with its own bar (urd):
-    tags per monitor, mouse drag to swap and resize tiles, sliding animations, and two
-    switchable looks — gruvbox and MU/TH/UR with a live starfield. Built in: a system
-    tray with application menus, notifications that type themselves out, a slide-up
-    terminal, a Nostromo mode with CRT glitches and radio chatter, and norns-ctl for
-    scripting. Code written by Claude under my direction, used daily on my machine.
+    norns (Not Only a River's Next Sloppy WM) — a BSP window manager for the river
+    Wayland compositor, with its own bar (urd): nine tags per monitor, mouse drag to
+    swap and resize tiles, sliding animations, and four themes that switch borders,
+    bar, wallpaper and terminal palette together — GRUVBOX, MU/TH/UR with a live
+    starfield, and the calm GRAFIT and PAPIER. Built in: a system tray with application
+    menus, verdandi — a notification daemon whose notifications type themselves out,
+    a slide-up terminal, zen mode (no bar, gaps or borders; notifications wait),
+    CRT scanlines, a screen saver, and norns-ctl for scripting. Code written by Claude
+    under my direction, used daily on my machine.
   pl: >-
-    Window manager BSP dla kompozytora river, z własnym paskiem (urd): tagi na każdym
-    monitorze, przeciąganie i zmiana rozmiaru kafli myszą, animacje przesuwania i dwa
-    przełączane wyglądy — gruvbox oraz MU/TH/UR z żywym niebem. W środku: zasobnik
-    z menu aplikacji, powiadomienia wypisywane jak na terminalu, terminal wysuwany od
-    dołu, tryb Nostromo z zakłóceniami kineskopu i głosem z radiostacji oraz norns-ctl
-    do skryptów. Kod napisał Claude pod moim kierunkiem, używany na co dzień na moim
-    komputerze.
-
+    norns (Not Only a River's Next Sloppy WM) — menedżer okien BSP dla kompozytora
+    river, z własnym paskiem urd: dziewięć tagów na każdym monitorze, przeciąganie
+    i zmiana rozmiaru kafli myszą, animacje przesuwania i cztery motywy, które zmieniają
+    naraz ramki, pasek, tapetę i paletę terminala — GRUVBOX, MU/TH/UR z ruchomym polem
+    gwiazd oraz spokojne GRAFIT i PAPIER. Wbudowane: zasobnik systemowy z menu
+    aplikacji, verdandi — demon powiadomień, które same się wypisują, terminal wysuwany
+    od dołu, tryb zen (bez paska, odstępów i ramek; powiadomienia czekają), linie
+    kineskopu (tryb CRT), wygaszacz ekranu i norns-ctl do skryptów. Kod napisał Claude
+    pod moim kierunkiem; używam go na co dzień na swoim komputerze.
 - date: WIP
   tag: c
   status: wip
